@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}Sign In{% endblock %}
+
+{% block script %}
+{% load static %}<script src="{% static 'boardapp/assets/js/user.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="row block-center">
+    <div class="card-box col-6">
+        <form id="register_form" action="/boardapp/user_register_res/" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="phone" id="phone" value="" />
+            <input type="hidden" name="email" id="email" value="" />
+            <div class="row">
+                <div class="col-12"><h2>Sign In</h2></div>
+            </div>
+            <div class="row">
+                <div class="ml-1 col-11">ID:
+                    <span class="margin-left-10">
+                        <input type="text" name="username" id="username" value="" size="8"/>
+                        <input type="button" value="Duplication check" onclick="idCheck()" />
+                        <span id="idcheck-result"></span>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="ml-1 col-11">Password:
+                    <span class="margin-left-10">
+                        <input type="password" name="password" id="password" value="" size="8"/>
+                    </span>
+                    <br/>
+                    <span style="font-size: 0.7em">
+                        * Password must be at least 8 characters long.
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="ml-1 col-11">Confirm Password:
+                    <span class="margin-left-10">
+                        <input type="password" id="password_check" value="" size="8"/>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="ml-1 col-11">Name:
+                    <span class="margin-left-10">
+                        <input type="text" name="last_name" id="last_name" value="" size="8"/>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="ml-1 col-11">Email:
+                    <span class="margin-left-10">
+                        <input type="text" name="email_id" id="email_id" value="" size="8"/>
+                        @ <input type="text" id="email_domain" value="" size="8"/>
+                        <select id="email_selection" onchange="changeEmailDomain()">
+                            <option value="" selected="selected">--Choose--</option>
+                            <option value="naver.com">naver.com</option>
+                            <option value="hanmail.net">hanmail.net</option>
+                            <option value="gmail.com">gmail.com</option>
+                            <option value="me.com">me.com</option>
+                        </select>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="ml-1 col-11">Phone:
+                    <span class="margin-left-10">
+                        <input type="text" id="phone1" value="" size="3"/>
+                        <input type="text" id="phone2" value="" size="4"/>
+                        <input type="text" id="phone3" value="" size="4"/>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="ml-1 col-11">Birth:
+                    <span class="margin-left-10">
+                        <input type="text" name="birth_year" id="birth_year" value="" size="4"/>.
+                        <select name="birth_month" id="birth_month">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>.
+                        <input type="text" name="birth_day" id="birth_day" value="" size="2"/>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 center">
+                    <input type="button" value="Sign In" onclick="userRegister()"/>
+                    <input type="button" value="Cancel" onclick="cancelUserRegister()"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
